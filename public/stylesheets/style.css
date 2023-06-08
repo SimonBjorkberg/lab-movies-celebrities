@@ -6,3 +6,20 @@ body {
 a {
   color: #00b7ff;
 }
+
+.celeb-container {
+  border: solid black 1px;
+  margin: 20px;
+  text-align: center;
+}
+.link-list {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: solid black 1px;
+  width: 30%;
+  margin: auto;
+}
+.link-list a {
+  margin: 10px;
+}
