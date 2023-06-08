@@ -25,4 +25,11 @@ router.post("/movies/create", (req, res) => {
   res.redirect("/movies");
 });
 
+router.get('/movies', (req, res) => {
+    Movie.find()
+    .then(movies => {
+        res.render('movies/movies', { movies })
+    })
+})
+
 module.exports = router;
