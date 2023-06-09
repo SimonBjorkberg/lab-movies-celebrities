@@ -14,7 +14,6 @@ router.get("/movies/create", (req, res) => {
 
 router.post("/movies/create", (req, res) => {
   const selectedIds = req.body.selectedIds;
-  console.log(selectedIds);
   const { title, genre, plot, cast } = req.body;
   Movie.create({ title, genre, plot, cast: selectedIds })
     .then((movieFromDB) => console.log(`we created a movie ${movieFromDB}`))
@@ -35,10 +34,17 @@ router.get("/movies/:movieId", (req, res) => {
   Movie.findById(req.params.movieId)
     .populate("cast")
     .then((movie) => {
-      console.log(movie);
       res.render("movies/movie-details", { movie });
     })
     .catch((err) => console.log("err", err));
 });
+
+router.post('/movies/:movieId/delete', (req, res) => {
+  Movie.findByIdAndDelete(req.params.movieId)
+  .then(() => {
+    res.redirect('/')
+  })
+    .catch((err) => console.log('err', err))
+})
 
 module.exports = router;
