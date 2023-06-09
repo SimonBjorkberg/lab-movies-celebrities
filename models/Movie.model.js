@@ -15,7 +15,8 @@ const movieSchema = new Schema({
   cast: {
     type: [
         {
-            type: 'ObjectId'
+            type: 'ObjectId',
+            ref: 'Celebrity'
         }
     ]
   }
