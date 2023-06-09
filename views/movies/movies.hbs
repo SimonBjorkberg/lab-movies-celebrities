@@ -1,10 +1,12 @@
-<h1 style="text-align: center;">Movies</h1>
-<div>
-  {{#each movies}}
-    <div class="celeb-container">
-      <a href="/movies/{{this.id}}" id="movieId"><h2>{{this.title}}</h2></a>
-    </div>
-  {{/each}}
-</div>
+<div class="movie-list-container">
+  <h1>Movies</h1>
+  <div class="movie-list">
+    {{#each movies}}
+      <div class="movie-item">
+        <a href="/movies/{{this.id}}" id="movieId"><h2>{{this.title}}</h2></a>
+      </div>
+    {{/each}}
+  </div>
 
-<a href="/" style="text-align: center;">HOME</a>
+  <a href="/" class="centered-link">HOME</a>
+</div>

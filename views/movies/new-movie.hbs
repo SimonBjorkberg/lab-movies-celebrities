@@ -1,28 +1,32 @@
-<h2>Create a movie</h2>
+<div class="new-movie-container">
+  <h2>Create a movie</h2>
 
-<form action="/movies/create" method="post">
-  <label>
-    title:
-    <input type="text" name="title" />
-  </label>
-  <label>
-    Genre:
-    <input type="text" name="genre" />
-  </label>
-  <label>
-    Plot:
-    <input type="text" name="plot" />
-  </label>
-  <div>
+  <form action="/movies/create" method="post">
     <label>
-      Cast: <br>
-      {{#each celebs}}
-        <input type="checkbox" name="selectedIds" value={{this._id}} />
-        {{this.name}}<br />
-      {{/each}}
+      title:
+      <input type="text" name="title" />
     </label>
-  </div>
-  <button type="submit"> Submit </button>
-</form>
+    <label>
+      Genre:
+      <input type="text" name="genre" />
+    </label>
+    <label>
+      Plot:
+      <input type="text" name="plot" />
+    </label>
+    <div class="cast-list">
+      <label>Cast:</label>
+      <div class="checkbox-container">
+        {{#each celebs}}
+          <label>
+            <input type="checkbox" name="selectedIds" value="{{this._id}}" />
+            {{this.name}}
+          </label>
+        {{/each}}
+      </div>
+    </div>
+    <button type="submit"> Submit </button>
+  </form>
 
-<a href="/" style="text-align: center;">HOME</a>
+  <a href="/" class="centered-link">HOME</a>
+</div>

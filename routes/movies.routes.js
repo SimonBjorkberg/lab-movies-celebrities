@@ -39,12 +39,45 @@ router.get("/movies/:movieId", (req, res) => {
     .catch((err) => console.log("err", err));
 });
 
-router.post('/movies/:movieId/delete', (req, res) => {
+router.post("/movies/:movieId/delete", (req, res) => {
   Movie.findByIdAndDelete(req.params.movieId)
-  .then(() => {
-    res.redirect('/')
-  })
-    .catch((err) => console.log('err', err))
-})
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((err) => console.log("err", err));
+});
+
+router.get("/movies/edit-movie/:movieId", (req, res) => {
+  const movieProm = Movie.findById(req.params.movieId);
+  const celebrityProm = Celebrity.find();
+
+  Promise.all([movieProm, celebrityProm])
+    .then(([movie, celebrity]) => {
+      console.log(movie);
+      res.render("movies/edit-movie", { movie, celebrity });
+    })
+    .catch((err) => console.log("err", err));
+});
+
+router.post("/movies/:movieId", (req, res) => {
+  const updatedMovie = {
+    title: req.body.title,
+    genre: req.body.genre,
+    plot: req.body.plot,
+    cast: req.body.cast,
+  };
+  Movie.findByIdAndUpdate(
+    req.params.movieId,
+    {
+      title: updatedMovie.title,
+      genre: updatedMovie.genre,
+      plot: updatedMovie.plot,
+      cast: updatedMovie.cast,
+    },
+    { new: true }
+  ).then(() => {
+    res.redirect('/movies')
+  });
+});
 
 module.exports = router;
